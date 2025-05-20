@@ -1,7 +1,7 @@
 ---
 title: 'Road Map'
 description: 'Topics to cover in future blog posts'
-pubDate: '2024-03-19'
+pubDate: '2025-05-11'
 heroImage: '/joseph-blog/blog-roadmap-1.jpg'
 ---
 
