@@ -2,6 +2,8 @@
 
 This blog is a personal space where I share my journey, projects, and discoveries as a junior developer. It's built with [Astro](https://astro.build) and deployed on GitHub Pages.
 
+![blog](public/global/blog.webp)
+
 ## 🧩 Technologies Used
 
 - **Astro**: Static site generator framework
