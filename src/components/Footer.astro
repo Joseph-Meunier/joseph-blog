@@ -19,9 +19,10 @@ const today = new Date();
 <style>
 	footer {
 		padding: 2em 1em 6em 1em;
-		background: linear-gradient(var(--gray-gradient)) no-repeat;
-		color: rgb(var(--gray));
+		background: var(--footer-bg);
+		color: var(--text-color);
 		text-align: center;
+		transition: background-color 0.3s ease, color 0.3s ease;
 	}
 	.social-links {
 		display: flex;
@@ -31,9 +32,10 @@ const today = new Date();
 	}
 	.social-links a {
 		text-decoration: none;
-		color: rgb(var(--gray));
+		color: var(--text-color);
+		transition: color 0.3s ease;
 	}
 	.social-links a:hover {
-		color: rgb(var(--gray-dark));
+		color: var(--accent);
 	}
 </style>
