@@ -10,12 +10,12 @@ A first post to present my simple Road Map for this blog.
 | Task                                                       | Validated | Date       |
 |------------------------------------------------------------|-----------|------------|
 | REST API conventions                                       | ✅        | 2025-06-12 |
-| Clean Architecture                                         | ❌        |            |
-| N-tier Architecture                                        | ❌        |            |
-| Unit testing and end-to-end testing                        | ❌        |            |
-| Async/await in C#                                          | ❌        |            |
-| CI/CD                                                      | ❌        |            |
 | SOLID principles                                           | ❌        |            |
+| Async/await in C#                                          | ❌        |            |
 | Difference between hashing, encryption and encoding        | ❌        |            |
 | Dependency injection                                       | ❌        |            |
+| N-tier Architecture                                        | ❌        |            |
 | Auth                                                       | ❌        |            |
+| Clean Architecture                                         | ❌        |            |
+| Unit testing and end-to-end testing                        | ❌        |            |
+| CI/CD                                                      | ❌        |            |
