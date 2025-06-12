@@ -7,4 +7,5 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
 	site: 'https://Joseph-Meunier.github.io',
 	base: '/joseph-blog',
+	integrations: [mdx()],
 });
