@@ -1,8 +1,8 @@
 ---
 title: 'Object-Oriented Programming'
 description: 'Object-Oriented Programming'
-pubDate: '2025-06-12'
-heroImage: '/joseph-blog/articles/object-oriented-programming/object-oriented-programming-title.webp'
+pubDate: '2025-06-13'
+heroImage: '/joseph-blog/articles/object-oriented-programming/title.webp'
 ---
 
 ## Object-Oriented Programming
@@ -12,3 +12,37 @@ Object-oriented programming (OOP) is a programming paradigm based on the concept
 ### Example
 
 Let's take the example of a dog.
+
+avant si l'on n'utilisait pas la POO, on aurait un code comme ceci :
+
+```C#
+var userName = "John";
+var userAge = 20;
+var userIsAdmin = false;
+
+var userName = "Jane";
+var userAge = 21;
+var userIsAdmin = true;
+```
+
+or maintentant si l'on utilise la POO, on aurait un code comme ceci :
+
+```C#
+class User {
+    public string Name { get; set; }
+    public int Age { get; set; }
+    public bool IsAdmin { get; set; }
+}
+
+var user = new User();
+user.Name = "John";
+user.Age = 20;
+user.IsAdmin = false;
+
+var user2 = new User();
+user2.Name = "Jane";
+user2.Age = 21;
+user2.IsAdmin = true;
+```
+
+comme ca si l'on 
