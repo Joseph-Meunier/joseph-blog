@@ -10,7 +10,7 @@ A first post to present my simple Road Map for this blog.
 | Task                                                       | Validated | Date       |
 |------------------------------------------------------------|-----------|------------|
 | REST API conventions                                       | ✅        | 2025-06-12 |
-| Object-Oriented Programming principles                     | ❌        |            |
+| Object-Oriented Programming principles                     | ✅        | 2025-06-19 |
 | SOLID principles                                           | ❌        |            |
 | Async/await in C#                                          | ❌        |            |
 | Difference between hashing, encryption and encoding        | ❌        |            |
