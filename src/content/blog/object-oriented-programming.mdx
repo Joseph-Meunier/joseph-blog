@@ -11,38 +11,209 @@ Object-oriented programming (OOP) is a programming paradigm based on the concept
 
 ### Example
 
-Let's take the example of a dog.
+Let's take the example of an animal.
 
-avant si l'on n'utilisait pas la POO, on aurait un code comme ceci :
+Before, if we didn't use OOP, we would have code like this:
 
 ```C#
-var userName = "John";
-var userAge = 20;
-var userIsAdmin = false;
+var animalName = "John";
+var animalAge = 20;
+var animalType = "Dog";
 
-var userName = "Jane";
-var userAge = 21;
-var userIsAdmin = true;
+var animalName = "Jane";
+var animalAge = 21;
+var animalType = "Cat";
 ```
 
-or maintentant si l'on utilise la POO, on aurait un code comme ceci :
+But now, if we use OOP, we would have code like this:
 
 ```C#
-class User {
+class Animal {
     public string Name { get; set; }
     public int Age { get; set; }
-    public bool IsAdmin { get; set; }
+    public string Type { get; set; }
+
+    public void Eat() {
+        Console.WriteLine($"{Name} is eating");
+    }
+
+    public void Sleep() {
+        Console.WriteLine($"{Name} is sleeping");
+    }
+
+    public void MakeSound() {
+        Console.WriteLine($"{Name} is making a sound");
+    }
 }
 
-var user = new User();
-user.Name = "John";
-user.Age = 20;
-user.IsAdmin = false;
+var animal = new Animal();
+animal.Name = "John";
+animal.Age = 10;
+animal.Type = "Dog";
 
-var user2 = new User();
-user2.Name = "Jane";
-user2.Age = 21;
-user2.IsAdmin = true;
+var animal2 = new Animal();
+animal2.Name = "Jane";
+animal2.Age = 6;
+animal2.Type = "Cat";
 ```
 
-comme ca si l'on 
+This allows us to create objects that have properties and methods.
+
+### Properties
+
+Properties are variables that belong to an object.
+In our example, the properties are `Name`, `Age`, and `Type`.
+
+### Methods
+
+Methods are functions that belong to an object.
+In our example, the methods are `Eat`, `Sleep`, and `MakeSound`.
+
+```C#
+animal.Eat();
+animal.Sleep();
+animal.MakeSound();
+```
+
+### The 3 Principles of OOP
+
+1. Encapsulation
+2. Inheritance
+3. Polymorphism
+
+#### Encapsulation
+
+Encapsulation is the principle of encapsulating the data and methods of an object.
+This allows us to protect the data and methods of an object by making them private.
+This also makes the data and methods of an object easier to maintain.
+This also makes the data and methods of an object easier to test.
+
+In our example, we have encapsulated the data and methods of an object.
+The properties are private and the methods are public.
+```C#
+class Animal {
+    private string name;
+    private int age;
+
+    public void Eat() {
+        Console.WriteLine($"{name} is eating");
+    }
+
+    public void Sleep() {
+        Console.WriteLine($"{name} is sleeping");
+    }
+
+    public void MakeSound() {
+        Console.WriteLine($"{name} is making a sound");
+    }
+}
+
+var animal = new Animal();
+animal.Name = "John";
+animal.Age = 10;
+
+animal.Eat();
+animal.Sleep();
+animal.MakeSound();
+```
+
+If we execute it, we get the following result:
+```
+John is eating
+John is sleeping
+John is making a sound
+```
+Note that here with the `Animal` class, we instantiate an object of this class.
+
+```C#
+var animal = new Animal();
+```
+
+We cannot instantiate an abstract class.
+
+#### Inheritance
+
+Inheritance is the principle of inheriting data and methods from an object.
+This allows us to create a class that inherits properties and methods from another class.
+This allows us to reduce code duplication and make the code easier to maintain, read, and test.
+
+If we take our example again, we can create a `Dog` class and a `Cat` class that inherit from the `Animal` class.
+
+```C#
+class Dog : Animal {
+    public override void MakeSound() {
+        Console.WriteLine($"{name} is barking");
+    }
+}
+
+class Cat : Animal {
+    public override void MakeSound() {
+        Console.WriteLine($"{name} is meowing");
+    }
+}
+
+```
+We can see that the `Dog` class and the `Cat` class inherit from the `Animal` class and that the `MakeSound` method is redefined (it is overridden) in the `Dog` and `Cat` classes.
+
+#### Polymorphism
+
+Polymorphism is the principle of polymorphizing the data and methods of an object.
+This means that we can use the same methods for different objects.
+
+If we take our example again, we can create a `Dog` class and a `Cat` class that inherit from the `Animal` class and we can use the same methods for different objects.
+Below, we create an `animal` object of the `Animal` class and we call the `MakeSound` method which is defined in the `Animal` class.
+Then, we create a `dog` object of the `Dog` class and we call the `MakeSound` method which is defined in the `Dog` class.
+Then, we create a `cat` object of the `Cat` class and we call the `MakeSound` method which is defined in the `Cat` class.
+
+```C#
+var animal = new Animal();
+animal.Name = "John";
+animal.MakeSound();
+
+var dog = new Dog();
+dog.Name = "Rex";
+dog.MakeSound();
+
+var cat = new Cat();
+cat.Name = "Whiskers";
+cat.MakeSound();
+```
+
+If we execute it, we get the following result:
+
+```
+John is making a sound
+Rex is barking
+Whiskers is meowing
+```
+
+We can also see that the `Animal` class doesn't really need to be instantiated.
+An animal is necessarily of a species.
+To prevent instantiation of the `Animal` class, we can make it abstract.
+
+```C#
+abstract class Animal {
+    public string Name { get; set; }
+    public int Age { get; set; }
+}
+
+```
+
+### Conclusion
+
+OOP is a programming paradigm that allows us to create objects that have properties and methods.
+It makes the code easier to maintain, read, and test.
+
+### Quiz
+
+- What is OOP?
+- What are the 3 principles of OOP?
+- What is encapsulation?
+- What is inheritance?
+- What is polymorphism?
+
+If you haven't understood, I invite you to reread the content of the article or to read the references.
+
+### References
+
+- [Object-Oriented Programming](https://en.wikipedia.org/wiki/Object-oriented_programming)
