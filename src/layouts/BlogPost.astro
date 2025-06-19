@@ -41,9 +41,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				text-align: center;
 				line-height: 1;
 			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
+
 			.date {
 				margin-bottom: 0.5em;
 				color: rgb(var(--gray));
@@ -51,6 +49,33 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			.last-updated-on {
 				font-style: italic;
 			}
+			
+			.prose pre {
+				background: #1e1e1e;
+				border-radius: 8px;
+				padding: 1rem;
+				margin: 1.5rem 0;
+				overflow-x: auto;
+				border: 1px solid #333;
+			}
+			
+			.prose code {
+				background: #f1f1f1;
+				padding: 0.2rem 0.4rem;
+				border-radius: 4px;
+				font-size: 0.9em;
+				color: #d63384;
+			}
+			
+			.prose pre code {
+				background: transparent;
+				padding: 0;
+				color: inherit;
+				font-size: 0.9rem;
+				line-height: 1.5;
+			}
+			
+		
 		</style>
 	</head>
 
