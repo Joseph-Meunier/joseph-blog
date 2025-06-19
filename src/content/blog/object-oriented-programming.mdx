@@ -5,92 +5,120 @@ pubDate: '2025-06-13'
 heroImage: '/joseph-blog/articles/object-oriented-programming/title.webp'
 ---
 
-## Object-Oriented Programming
+## What is OOP?
 
 Object-oriented programming (OOP) is a programming paradigm based on the concept of "objects", which can contain data and code to manipulate that data.
-
-### Example
 
 Let's take the example of an animal.
 
 Before, if we didn't use OOP, we would have code like this:
 
-```C#
+```csharp
 var animalName = "John";
-var animalAge = 20;
-var animalType = "Dog";
+var animalAge = 2;
 
 var animalName = "Jane";
-var animalAge = 21;
-var animalType = "Cat";
+var animalAge = 7;
 ```
 
 But now, if we use OOP, we would have code like this:
 
-```C#
-class Animal {
-    public string Name { get; set; }
-    public int Age { get; set; }
-    public string Type { get; set; }
-
-    public void Eat() {
-        Console.WriteLine($"{Name} is eating");
-    }
-
-    public void Sleep() {
-        Console.WriteLine($"{Name} is sleeping");
-    }
-
-    public void MakeSound() {
-        Console.WriteLine($"{Name} is making a sound");
-    }
-}
-
+```csharp
 var animal = new Animal();
 animal.Name = "John";
 animal.Age = 10;
-animal.Type = "Dog";
 
 var animal2 = new Animal();
 animal2.Name = "Jane";
 animal2.Age = 6;
-animal2.Type = "Cat";
 ```
 
-This allows us to create objects that have properties and methods.
+This allows us to create objects who can be instantiated and have properties and methods.
+
+### Class
+
+A class is a blueprint for creating objects.
+It defines the properties and methods of an object.
+
+```csharp
+class Animal {
+    public string Name { get; set; }
+    public int Age { get; set; }
+}
+```
+
+### Object
+
+An object is an instance of a class.
+It has the properties and methods of the class.
+
+```csharp
+var animal = new Animal();
+```
+
+### Instantiation
+
+Instantiation is the process of creating an object from a class.
+
+```csharp
+var animal = new Animal();
+```
 
 ### Properties
 
 Properties are variables that belong to an object.
-In our example, the properties are `Name`, `Age`, and `Type`.
+In our example, the properties are `Name` and `Age`.
+
+```csharp
+animal.Name = "John";
+animal.Age = 10;
+```
 
 ### Methods
 
 Methods are functions that belong to an object.
-In our example, the methods are `Eat`, `Sleep`, and `MakeSound`.
+In our example, we can add the methods `Eat`, `Sleep`, and `MakeSound`.
+We can also see that we can access the properties of the object in the methods.
 
-```C#
-animal.Eat();
-animal.Sleep();
-animal.MakeSound();
+
+```csharp
+class Animal {
+    private string name;
+    private int age;
+
+    public void Eat() {
+        Console.WriteLine($"{name} is eating");
+    }
+
+    public void Sleep() {
+        Console.WriteLine($"{name} is sleeping");
+    }
+
+    public void MakeSound() {
+        Console.WriteLine($"{name} is making a sound");
+    }
+}
 ```
 
-### The 3 Principles of OOP
+
+
+## The 3 Principles of OOP
+
+In OOP, we have 3 principles:
 
 1. Encapsulation
 2. Inheritance
 3. Polymorphism
 
-#### Encapsulation
+### Encapsulation
 
 Encapsulation is the principle of encapsulating the data and methods of an object.
 This allows us to protect the data and methods of an object by making them private.
-This also makes the data and methods of an object easier to maintain.
-This also makes the data and methods of an object easier to test.
+It also makes the data and methods of an object easier to maintain and test.
 
 In our example, we have encapsulated the data and methods of an object.
 The properties are private and the methods are public.
-```C#
+```csharp
 class Animal {
     private string name;
     private int age;
@@ -118,20 +146,14 @@ animal.MakeSound();
 ```
 
 If we execute it, we get the following result:
-```
-John is eating
-John is sleeping
-John is making a sound
-```
-Note that here with the `Animal` class, we instantiate an object of this class.
-
-```C#
-var animal = new Animal();
+```csharp
+"John is eating"
+"John is sleeping"
+"John is making a sound"
 ```
 
-We cannot instantiate an abstract class.
 
-#### Inheritance
+### Inheritance
 
 Inheritance is the principle of inheriting data and methods from an object.
 This allows us to create a class that inherits properties and methods from another class.
@@ -139,7 +161,7 @@ This allows us to reduce code duplication and make the code easier to maintain, 
 
 If we take our example again, we can create a `Dog` class and a `Cat` class that inherit from the `Animal` class.
 
-```C#
+```csharp
 class Dog : Animal {
     public override void MakeSound() {
         Console.WriteLine($"{name} is barking");
@@ -155,7 +177,7 @@ class Cat : Animal {
 ```
 We can see that the `Dog` class and the `Cat` class inherit from the `Animal` class and that the `MakeSound` method is redefined (it is overridden) in the `Dog` and `Cat` classes.
 
-#### Polymorphism
+### Polymorphism
 
 Polymorphism is the principle of polymorphizing the data and methods of an object.
 This means that we can use the same methods for different objects.
@@ -165,7 +187,7 @@ Below, we create an `animal` object of the `Animal` class and we call the `MakeS
 Then, we create a `dog` object of the `Dog` class and we call the `MakeSound` method which is defined in the `Dog` class.
 Then, we create a `cat` object of the `Cat` class and we call the `MakeSound` method which is defined in the `Cat` class.
 
-```C#
+```csharp
 var animal = new Animal();
 animal.Name = "John";
 animal.MakeSound();
@@ -181,17 +203,19 @@ cat.MakeSound();
 
 If we execute it, we get the following result:
 
+```csharp
+"John is making a sound"
+"Rex is barking"
+"Whiskers is meowing"
 ```
-John is making a sound
-Rex is barking
-Whiskers is meowing
-```
+
+## Abstract
 
 We can also see that the `Animal` class doesn't really need to be instantiated.
 An animal is necessarily of a species.
 To prevent instantiation of the `Animal` class, we can make it abstract.
 
-```C#
+```csharp
 abstract class Animal {
     public string Name { get; set; }
     public int Age { get; set; }
@@ -199,12 +223,12 @@ abstract class Animal {
 
 ```
 
-### Conclusion
+## Conclusion
 
 OOP is a programming paradigm that allows us to create objects that have properties and methods.
 It makes the code easier to maintain, read, and test.
 
-### Quiz
+## Quiz
 
 - What is OOP?
 - What are the 3 principles of OOP?
@@ -214,6 +238,6 @@ It makes the code easier to maintain, read, and test.
 
 If you haven't understood, I invite you to reread the content of the article or to read the references.
 
-### References
+## References
 
 - [Object-Oriented Programming](https://en.wikipedia.org/wiki/Object-oriented_programming)
