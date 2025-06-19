@@ -8,4 +8,15 @@ export default defineConfig({
 	site: 'https://Joseph-Meunier.github.io',
 	base: '/joseph-blog',
 	integrations: [mdx()],
+	markdown: {
+		shikiConfig: {
+			// Choisissez un thème parmi les thèmes disponibles
+			theme: 'github-dark',
+			// Ou utilisez un thème personnalisé
+			// theme: 'github-light',
+			// theme: 'dracula',
+			// theme: 'nord',
+			// theme: 'one-dark-pro',
+		}
+	}
 });
