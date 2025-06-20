@@ -3,12 +3,25 @@ title: 'SOLID and KISS Principles'
 description: 'What are the SOLID and KISS Principles?'
 pubDate: '2025-06-22'
 heroImage: '/joseph-blog/articles/solid-principles/solid-principles-title.webp'
-IsPublished: false
+IsPublished: true
 ---
 
 ## What are the SOLID principles?
 
-The **SOLID principles** are a set of five design principles that help developers create maintainable, scalable, and robust software. They were introduced by Robert C. Martin and are widely used in object-oriented programming.
+The **SOLID principles** are a set of five design principles that help developers create maintainable, scalable, and robust software. 
+
+They were introduced by Robert C. Martin and are widely used in object-oriented programming.
+
+## Table of contents
+
+- [S - Single Responsibility Principle](#s---single-responsibility-principle)
+- [O - Open/Closed Principle](#o---openclosed-principle)
+- [L - Liskov Substitution Principle](#l---liskov-substitution-principle)
+- [I - Interface Segregation Principle](#i---interface-segregation-principle)
+- [D - Dependency Inversion Principle](#d---dependency-inversion-principle)
+- [KISS Principle](#what-is-the-kiss-principle)
+- [Conclusion](#conclusion)
+- [Quiz](#quizz)
 
 ### S - Single Responsibility Principle
 
@@ -58,76 +71,11 @@ public class Human : Animal {
 }
 ```
 
-An other example, a class that handles user authentication and authorization 
-should be split into two classes: one for authentication and one for authorization.
-
-❌**Bad example:**
-```csharp
-public class User {
-    public string Name { get; set; }
-    public string Email { get; set; }
-    public string Password { get; set; }
-
-    public void Login() {
-        // ...
-    }
-
-    public void Logout() {
-        // ...
-    }
-
-    public void Register() {
-        // ...
-    }
-
-    public void UpdateRole(string role) {
-        // ...
-    }
-
-    public void UpdatePassword(string password) {
-        // ...
-    }
-}
-```
-
-✅**Good example:**
-```csharp
-public class UserAuthentication {
-    public void Login() {
-        // ...
-    }
-
-    public void Logout() {
-        // ...
-    }
-
-    public void Register() {
-        // ...
-    }
-}
-
-public class UserAuthorization {
-    public void UpdateRole(string role) {
-        // ...
-    }
-
-    public void UpdatePassword(string password) {
-        // ...
-    }
-}
-```
-
 
 ### O - Open/Closed Principle
 
 A class should be open for extension but closed for modification.
 You need to be able to add new features to a class without modifying the existing code.
-
-It allows to:
-
-- respect the principle of non-regression (do not break the existing code),
-- favorize reusability and maintainability,
-- avoid bugs when modifying the code.
 
 For exemple, with animal class, instead of having a method `MakeSound` with a parameter `string typeSound` like that:,
 
@@ -148,7 +96,7 @@ class Animal {
 ```
 
 ✅**Good example:**
-We can abstract the `Animal` class like that:
+We can [abstract](../object-oriented-programming#abstract) the `Animal` class like that:
 
 ```csharp
 public abstract class Animal {
