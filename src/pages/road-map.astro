@@ -1,0 +1,160 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<style is:global>
+
+    /* Largeurs des colonnes */
+    .roadmap-table th:nth-child(1) { width: 30%; }
+    .roadmap-table th:nth-child(2) { width: 10%; }
+    .roadmap-table th:nth-child(3) { width: 10%; }
+    .roadmap-table th:nth-child(4) { width: 10%; }
+    .roadmap-table th:nth-child(5) { width: 10%; }
+</style>
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Road Map</h1>
+			<p>
+				This is my road map for this blog.
+			</p>
+            <table class="roadmap-table">
+                <thead>
+                    <tr>
+                        <th>Task</th>
+                        <th>Validated</th>
+                        <th>Date</th>
+                        <th>Link</th>
+                        <th>Inspiration</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Create article about REST API conventions</td>
+                        <td>✅</td>
+                        <td>2025-06-12</td>
+                        <td><a href="/joseph-blog/blog/rest-api">Article</a></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Create article about Object-Oriented Programming principles</td>
+                        <td>✅</td>
+                        <td>2025-06-19</td>
+                        <td><a href="/joseph-blog/blog/object-oriented-programming">Article</a></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Create article about SOLID and KISS principles</td>
+                        <td>✅</td>
+                        <td>2025-06-20</td>
+                        <td><a href="/joseph-blog/blog/solid-principles">Article</a></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Create a quizz page</td>
+                        <td>❌</td>
+                        <td>2025-06</td>
+                        <td><a href="/joseph-blog/quizz">Quizz</a></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Create article about Async/await in C#</td>
+                        <td>❌</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Create article about life cycle of a software</td>
+                        <td>❌</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Create article about Difference between hashing, encryption and encoding</td>
+                        <td>❌</td>
+                        <td></td>
+                        <td></td>
+                        <td><a href="https://www.google.com/search?client=firefox-b-d&sca_esv=2c6f63ed83ad38b8&sca_upv=1&sxsrf=ADLYWIKF4vnNnwnrF15P9Y-aK2BO8_XADA:1720313217720&q=hachage&source=lnms&fbs=AEQNm0CbCVgAZ5mWEJDg6aoPVcBgTlosgQSuzBMlnAdio07UCId2t1azIRgowYJD0nDbqEJ6FvRj5KNIgsmdsiBS5zSxfUHqHdP9BGZS40xEtYos-MPeb-UD8tPSstzC4Bxy08tiCP-NmL6CELM_T7qvLQxrvL-dsORw6PrsnowoGb4rMVKCbqMIwzkoxHNZ0LcGP-1JzRP0&sa=X&ved=2ahUKEwjOmPqR2pOHAxVLh_0HHZLaBCcQ0pQJegQIERAB&biw=1536&bih=703&dpr=1.25">Hashing</a></td>
+                    </tr>
+                    <tr>
+                        <td>Create article about Dependency injection</td>
+                        <td>❌</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Create article about N-tier Architecture</td>
+                        <td>❌</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Create article about Auth</td>
+                        <td>❌</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Create article about Clean Architecture</td>
+                        <td>❌</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Create article about Unit testing and end-to-end testing</td>
+                        <td>❌</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Create article about CI/CD</td>
+                        <td>❌</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Create article about Docker</td>
+                        <td>❌</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Create article about OAuth2</td>
+                        <td>❌</td>
+                        <td></td>
+                        <td></td>
+                        <td><a href="https://learn.microsoft.com/fr-fr/entra/architecture/auth-oauth2">Link 1</a>
+                            <a href="https://www.google.com/search?client=firefox-b-d&sca_esv=207a55e119c4cb0b&sca_upv=1&sxsrf=ADLYWIKc0TPIhUFBH7hQAdp8AWjbrCunFQ:1720312256136&q=protocole+oauth2&udm=2&fbs=AEQNm0CbCVgAZ5mWEJDg6aoPVcBgTlosgQSuzBMlnAdio07UCId2t1azIRgowYJD0nDbqEIN7XYIyS3uBYzHmWPp2pnWOM711f3zw8s8k2B2M4SwKO29ncF7gPsi0TMCOkJHAQXgr0HYQxa-9B2EGp01Ij7-JcaodPJjV6OvJKzoH4jbjvYwEFs&sa=X&ved=2ahUKEwiP3LfH1pOHAxVHo_0HHZeCBiEQtKgLegQICRAB&biw=1536&bih=703&dpr=1.25#vhid=8VpUXKqEnHyS_M&vssid=mosaic">Link 2</a>
+                       </td>
+                    </tr>
+                    <tr>
+                        <td>Create article about Microservices</td>
+                        <td>❌</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+		</main>
+		<Footer />
+	</body>
+</html>
