@@ -273,3 +273,45 @@ hr {
 	background: var(--accent);
 	color: white;
 }
+
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 20px;
+	text-align: left;
+}
+th,
+td {
+	border: 1px solid #ddd;
+	padding: 8px;
+}
+
+/* Thème Clair (par défaut) */
+th {
+	background-color: #f2f2f2;
+	color: #333;
+}
+td {
+	background-color: #fff;
+	color: #333;
+}
+.roadmap-table td a {  
+	color: #007bff;
+	text-decoration: none;
+}
+
+/* Thème Sombre */
+html[data-theme="dark"] th {
+	background-color: #333;
+	color: #fff;
+	border-color: #555;
+}
+html[data-theme="dark"] td {
+	background-color: #222;
+	color: #eee;
+	border-color: #555;
+}
+html[data-theme="dark"] td a {
+	color: #60a5fa;
+}
