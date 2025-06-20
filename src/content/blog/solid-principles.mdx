@@ -1,41 +1,412 @@
 ---
-title: 'SOLID Principles'
-description: 'SOLID Principles'
-pubDate: '2025-06-12'
+title: 'SOLID and KISS Principles'
+description: 'What are the SOLID and KISS Principles?'
+pubDate: '2025-06-22'
 heroImage: '/joseph-blog/articles/solid-principles/solid-principles-title.webp'
 ---
 
-## SOLID Principles
+## What are the SOLID principles?
 
-The **SOLID principles** are a set of five design principles that help developers create maintainable, scalable, and robust software. They were introduced by Robert C. Martin (Uncle Bob) and are widely used in object-oriented programming.
+The **SOLID principles** are a set of five design principles that help developers create maintainable, scalable, and robust software. They were introduced by Robert C. Martin and are widely used in object-oriented programming.
 
 ### S - Single Responsibility Principle
 
 A class should have only one responsibility.
 
-For example, a class that handles user authentication and authorization should be split into two classes: one for authentication and one for authorization.
+For an example, an `Animal` class should have only one responsibility: to represent an animal.
+
+❌**Bad example:**
+```csharp
+public class Animal {
+    public string Name { get; set; }
+    public int Age { get; set; }
+
+    public void Eat() {
+        // ...
+    }
+
+    public void Sleep() {
+        // ...
+    }
+
+    public void UseClippers() {
+        // ...
+    }
+}
+```
+
+✅**Good example:**
+```csharp
+public class Animal {
+    public string Name { get; set; }
+    public int Age { get; set; }
+
+    public void Eat() {
+        // ...
+    }
+
+    public void Sleep() {
+        // ...
+    }
+}
+
+public class Human : Animal {
+    public void UseClippers() {
+        // ...
+    }
+}
+```
+
+An other example, a class that handles user authentication and authorization 
+should be split into two classes: one for authentication and one for authorization.
+
+❌**Bad example:**
+```csharp
+public class User {
+    public string Name { get; set; }
+    public string Email { get; set; }
+    public string Password { get; set; }
+
+    public void Login() {
+        // ...
+    }
+
+    public void Logout() {
+        // ...
+    }
+
+    public void Register() {
+        // ...
+    }
+
+    public void UpdateRole(string role) {
+        // ...
+    }
+
+    public void UpdatePassword(string password) {
+        // ...
+    }
+}
+```
+
+✅**Good example:**
+```csharp
+public class UserAuthentication {
+    public void Login() {
+        // ...
+    }
+
+    public void Logout() {
+        // ...
+    }
+
+    public void Register() {
+        // ...
+    }
+}
+
+public class UserAuthorization {
+    public void UpdateRole(string role) {
+        // ...
+    }
+
+    public void UpdatePassword(string password) {
+        // ...
+    }
+}
+```
 
 
 ### O - Open/Closed Principle
 
 A class should be open for extension but closed for modification.
+You need to be able to add new features to a class without modifying the existing code.
 
-For exemple, a dog 
+It allows to:
 
+- respect the principle of non-regression (do not break the existing code),
+- favorize reusability and maintainability,
+- avoid bugs when modifying the code.
+
+For exemple, with animal class, instead of having a method `MakeSound` with a parameter `string typeSound` like that:,
+
+❌**Bad example:**
+```csharp
+class Animal {
+    public string Name { get; set; }
+    public int Age { get; set; }
+
+    public void MakeSound(string typeSound) {
+        if (typeSound == "bark") {
+            Console.WriteLine($"{Name} is barking");
+        } else if (typeSound == "meow") {
+            Console.WriteLine($"{Name} is meowing");
+        }
+    }
+}
+```
+
+✅**Good example:**
+We can abstract the `Animal` class like that:
+
+```csharp
+public abstract class Animal {
+    public string Name { get; set; }
+    public int Age { get; set; }
+
+    public abstract void MakeSound();
+}
+
+public class Dog : Animal {
+    public override void MakeSound() {
+        Console.WriteLine($"{Name} is barking");
+    }
+}
+
+public class Cat : Animal {
+    public override void MakeSound() {
+        Console.WriteLine($"{Name} is meowing");
+    }
+}
+
+```
+
+Now we can add a new animal type without modifying the existing code.
 
 
 ### L - Liskov Substitution Principle
 
 Objects of a superclass should be replaceable with objects of a subclass without affecting the correctness of the program.
 
+If we take the example of the `Animal` class, we can see that the `Dog` and `Cat` classes are substitutable by the `Animal` class.
+
+```csharp
+public class Animal {
+    public string Name { get; set; }
+    public int Age { get; set; }
+
+    public void Eat() {
+        Console.WriteLine($"{Name} is eating");
+    }
+}
+
+public class Dog : Animal {}
+
+public class Cat : Animal {}
+
+```
+Like that, we can replace the `Dog` and `Cat` classes by the `Animal` class without affecting the correctness of the program.
+
+
 ### I - Interface Segregation Principle
 
 Clients should not be forced to depend on interfaces they do not use.
+
+The bad idea is to have a class `Animal` with a method `Eat` and a class `Dog` that inherits 
+from the `Animal` class and overrides the `Eat` method.
+
+❌**Bad example:**
+```csharp
+public interface IAction{
+    void Eat();
+    void Fly();
+    void MakeSound();
+}
+
+public class Dog : IAction {
+    public void Eat() {
+        Console.WriteLine("Dog is eating");
+    }
+
+    public void Fly() {
+        throw new NotImplementedException("Dogs can't fly");
+    }
+
+    public void MakeSound() {
+        Console.WriteLine("Dog barks");
+    }
+}
+```
+
+The better way is to split the interface into smaller interfaces, like that:
+
+✅**Good example:**
+```csharp
+public interface IEat{
+    void Eat();
+}
+
+public interface IFly{
+    void Fly();
+}
+
+public interface IMakeSound{
+    void MakeSound();
+}
+
+public class Dog : IEat, IMakeSound {
+    public void Eat() {
+        Console.WriteLine("Dog is eating");
+    }
+
+    public void MakeSound() {
+        Console.WriteLine("Dog barks");
+    }
+}
+
+public class Bird : IFly, IMakeSound, IEat {
+    public void Eat() {
+        Console.WriteLine("Bird is eating");
+    }
+
+    public void Fly() {
+        Console.WriteLine("Bird is flying");
+    }
+
+    public void MakeSound() {
+        Console.WriteLine("Bird is chirping");
+    }
+}
+```
+
+
 
 ### D - Dependency Inversion Principle
 
 High-level modules should not depend on low-level modules. Both should depend on abstractions.
 
+If we take the example with the `Animal` class,
+we can see that the `Dog` class is dependent on the `IEat` interface.
+
+❌**Bad example:**
+
+```csharp
+public class Animal {
+    public string Name { get; set; }
+    public int Age { get; set; }
+}
+
+public class IEat{
+    void Eat(){
+        Console.WriteLine("Animal is eating");
+    }
+}
+
+public class Dog : Animal, IEat {
+    public void Eat() {
+        Console.WriteLine("Dog is eating");
+    }
+}
+```
+
+The `Dog` class is dependent on the `IEat` interface,
+but the `Animal` class is not dependent on the `IEat` interface.
+
+✅**Good example:**
+```csharp
+public class Animal {
+    public string Name { get; set; }
+    public int Age { get; set; }
+}
+
+public interface IEat {
+    void Eat();
+}
+
+public class Mouth : IEat {
+    public void Eat() {
+        Console.WriteLine("Animal uses mouth to eat");
+    }
+}
+
+public class Dog : Animal, IEat {
+    private readonly IEat _eat;
+
+    public Dog(IEat eat) {
+        _eat = eat;
+    }
+
+    public void Eat() {
+        _eat.Eat();
+    }
+}
+
+```
+
+If we take an example more realistic; with the `OrderProcessor` class, we can see that the `OrderProcessor` class is dependent on the `EmailService` class.
+
+
+```csharp
+
+public interface IMessageService {
+    void Send(string message);
+}
+
+public class EmailService : IMessageService {
+    public void Send(string message) {
+        Console.WriteLine($"Sending email: {message}");
+    }
+}
+
+public class OrderProcessor {
+    private readonly IMessageService _messageService;
+
+    public OrderProcessor(IMessageService messageService) {
+        _messageService = messageService;
+    }
+
+    public void ProcessOrder() {
+        // ...
+        _messageService.Send("Order confirmed");
+    }
+}
+
+```
+
+## What is the KISS principle?
+
+Keep It Simple, Stupid.
+
+The KISS principle states that simple solutions are often better than complex ones.
+
+If we take an example realistic; with the filter of active users, 
+we can see that the filter is dependent on the `User` class.
+
+```csharp
+var activeUsers = new List<User>();
+foreach (var user in users) {
+    if (user.IsActive == true) {
+        activeUsers.Add(user);
+    }
+}
+```
+
+The better way to do it is to use Linq:
+
+```csharp
+var activeUsers = users.Where(user => user.IsActive == true).ToList();
+```
+
 ## Conclusion
 
-The principles help to create a more maintainable, scalable, and robust software, but it can be difficult to respect them all at the same time.
+The SOLID principles help to create a more maintainable, scalable, and robust software, but it can be difficult to respect them all at the same time.
+The KISS principle is a good way to keep the code simple and readable.
+
+## Quizz
+
+-  <span class="hover-reveal" data-tooltip="Single Responsibility Principle">What is the S in SOLID?</span>
+- <span class="hover-reveal" data-tooltip="Open/Closed Principle">What is the O in SOLID?</span>
+- <span class="hover-reveal" data-tooltip="Liskov Substitution Principle">What is the L in SOLID?</span>
+- <span class="hover-reveal" data-tooltip="Interface Segregation Principle">What is the I in SOLID?</span>
+- <span class="hover-reveal" data-tooltip="Dependency Inversion Principle">What is the D in SOLID?</span>
+- <span class="hover-reveal" data-tooltip="KISS Principle">What is the KISS principle?</span>
+- <span class="hover-reveal" data-tooltip="An abstract class is a class that cannot be instantiated. It can only be inherited by other classes.">What's an abstract class?</span>
+
+Hover the text to see the answer. (Doesn't work on mobile)
+
+If you haven't understood, I invite you to reread the content of the article or to read the references.
+
+## References
+
+- [SOLID Principles](https://en.wikipedia.org/wiki/SOLID)
+- [KISS Principle](https://en.wikipedia.org/wiki/KISS_principle)
