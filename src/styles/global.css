@@ -179,3 +179,97 @@ hr {
 	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
 }
+
+/* Styles pour le texte caché au survol */
+.hover-reveal {
+	position: relative;
+	display: inline-block;
+	cursor: help;
+}
+
+.hover-reveal::after {
+	content: attr(data-tooltip);
+	position: absolute;
+	bottom: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	background: rgba(0, 0, 0, 0.9);
+	color: white;
+	padding: 8px 12px;
+	border-radius: 6px;
+	font-size: 14px;
+	white-space: nowrap;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.3s ease, visibility 0.3s ease;
+	z-index: 1000;
+	max-width: 300px;
+	white-space: normal;
+	text-align: center;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.hover-reveal::before {
+	content: '';
+	position: absolute;
+	bottom: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	border: 6px solid transparent;
+	border-top-color: rgba(0, 0, 0, 0.9);
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.3s ease, visibility 0.3s ease;
+	z-index: 1000;
+}
+
+.hover-reveal:hover::after,
+.hover-reveal:hover::before {
+	opacity: 1;
+	visibility: visible;
+}
+
+/* Version alternative avec texte qui apparaît à côté */
+.hover-text {
+	position: relative;
+	display: inline-block;
+}
+
+.hover-text .hidden-text {
+	position: absolute;
+	left: 100%;
+	top: 50%;
+	transform: translateY(-50%);
+	background: var(--accent);
+	color: white;
+	padding: 6px 10px;
+	border-radius: 4px;
+	font-size: 14px;
+	white-space: nowrap;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.3s ease, visibility 0.3s ease;
+	z-index: 1000;
+	margin-left: 8px;
+	box-shadow: var(--box-shadow);
+}
+
+.hover-text:hover .hidden-text {
+	opacity: 1;
+	visibility: visible;
+}
+
+/* Version pour le mode sombre */
+[data-theme="dark"] .hover-reveal::after {
+	background: rgba(255, 255, 255, 0.95);
+	color: #1a1a1a;
+}
+
+[data-theme="dark"] .hover-reveal::before {
+	border-top-color: rgba(255, 255, 255, 0.95);
+}
+
+[data-theme="dark"] .hover-text .hidden-text {
+	background: var(--accent);
+	color: white;
+}
