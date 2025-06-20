@@ -3,7 +3,7 @@ title: 'Road Map'
 description: 'Topics to cover in future blog posts'
 pubDate: '2025-05-11'
 heroImage: '/joseph-blog/articles/road-map/blog-roadmap.jpg'
-IsPublished: true
+IsPublished: false
 ---
 
 A first post to present my simple Road Map for this blog.
