@@ -5,52 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page non trouvée - Joseph Blog</title>
     <style>
+        :root {
+            --accent: #2337ff;
+            --accent-dark: #000d8a;
+            --black: 15, 18, 25;
+            --gray: 96, 115, 159;
+            --gray-dark: 34, 41, 57;
+        }
+        
         body {
             font-family: 'Atkinson', sans-serif;
             background: #fff;
-            color: #333;
+            color: rgb(var(--gray-dark));
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
             padding: 20px;
+            font-size: 20px;
+            line-height: 1.7;
         }
-        .container {
+        
+        .error-container {
             text-align: center;
             max-width: 600px;
         }
-        h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-            color: #2337ff;
+        
+        .error-code {
+            font-size: 6rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin: 0;
+            line-height: 1;
         }
-        p {
-            font-size: 1.2em;
-            margin-bottom: 30px;
+        
+        .error-title {
+            font-size: 2rem;
+            margin: 1rem 0;
+            color: rgb(var(--black));
+        }
+        
+        .error-description {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: rgb(var(--gray));
             line-height: 1.6;
         }
-        .btn {
+        
+        .back-home {
             display: inline-block;
             padding: 12px 24px;
-            background: #2337ff;
+            background: var(--accent);
             color: white;
             text-decoration: none;
             border-radius: 8px;
             font-weight: 600;
             transition: background 0.3s ease;
         }
-        .btn:hover {
-            background: #000d8a;
+        
+        .back-home:hover {
+            background: var(--accent-dark);
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>404</h1>
-        <p>Oups ! La page que vous recherchez n'existe pas.</p>
-        <p>Elle a peut-être été déplacée, supprimée ou l'URL est incorrecte.</p>
-        <a href="/joseph-blog/" class="btn">Retour à l'accueil</a>
+    <div class="error-container">
+        <h1 class="error-code">404</h1>
+        <h2 class="error-title">Page non trouvée</h2>
+        <p class="error-description">
+            Oups ! La page que vous recherchez n'existe pas.<br>
+            Elle a peut-être été déplacée, supprimée ou l'URL est incorrecte.
+        </p>
+        <a href="/joseph-blog/" class="back-home">Retour à l'accueil</a>
     </div>
 </body>
 </html> 

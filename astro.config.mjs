@@ -14,6 +14,7 @@ export default defineConfig({
 			theme: 'one-dark-pro',
 		}
 	},
+	// Configuration pour les erreurs (sans redirects)
 	build: {
 		assets: 'assets'
 	}
