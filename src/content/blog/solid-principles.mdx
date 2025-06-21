@@ -1,6 +1,6 @@
 ---
-title: 'SOLID and KISS Principles'
-description: 'What are the SOLID and KISS Principles?'
+title: 'Principes SOLID et KISS'
+description: 'Quels sont les principes SOLID et KISS ?'
 writingStartDate: '2025-06-20'
 publishingDate: '2025-06-20'
 lastUpdated: '2025-06-21'
@@ -8,30 +8,30 @@ heroImage: '/joseph-blog/articles/solid-principles/solid-principles-title.webp'
 IsPublished: true
 ---
 
-## What are the SOLID principles?
+## Quels sont les principes SOLID ?
 
-The **SOLID principles** are a set of five design principles that help developers create maintainable, scalable, and robust software. 
+Les **principes SOLID** sont un ensemble de cinq principes de conception qui aident les développeurs à créer des logiciels maintenables, évolutifs et robustes.
 
-They were introduced by Robert C. Martin and are widely used in object-oriented programming.
+Ils ont été introduits par Robert C. Martin et sont largement utilisés en programmation orientée objet.
 
-## Table of contents
+## Table des matières
 
-- [S - Single Responsibility Principle](#s---single-responsibility-principle)
-- [O - Open/Closed Principle](#o---openclosed-principle)
-- [L - Liskov Substitution Principle](#l---liskov-substitution-principle)
-- [I - Interface Segregation Principle](#i---interface-segregation-principle)
-- [D - Dependency Inversion Principle](#d---dependency-inversion-principle)
-- [KISS Principle](#what-is-the-kiss-principle)
+- [S - Principe de Responsabilité Unique](#s---principe-de-responsabilite-unique)
+- [O - Principe Ouvert/Fermé](#o---principe-ouvertferme)
+- [L - Principe de Substitution de Liskov](#l---principe-de-substitution-de-liskov)
+- [I - Principe de Ségrégation des Interfaces](#i---principe-de-segregation-des-interfaces)
+- [D - Principe d'Inversion des Dépendances](#d---principe-dinversion-des-dependances)
+- [Principe KISS](#quest-ce-que-le-principe-kiss)
 - [Conclusion](#conclusion)
-- [Quiz](#quizz)
+- [Quiz](#quiz)
 
-### S - Single Responsibility Principle
+### S - Principe de Responsabilité Unique
 
-A class should have only one responsibility.
+Une classe ne devrait avoir qu'une seule responsabilité.
 
-For an example, an `Animal` class should have only one responsibility: to represent an animal.
+Par exemple, une classe `Animal` ne devrait avoir qu'une seule responsabilité : représenter un animal.
 
-❌**Bad example:**
+❌**Mauvais exemple :**
 ```csharp
 public class Animal {
     public string Name { get; set; }
@@ -51,7 +51,7 @@ public class Animal {
 }
 ```
 
-✅**Good example:**
+✅**Bon exemple :**
 ```csharp
 public class Animal {
     public string Name { get; set; }
@@ -73,15 +73,14 @@ public class Human : Animal {
 }
 ```
 
+### O - Principe Ouvert/Fermé
 
-### O - Open/Closed Principle
+Une classe devrait être ouverte à l'extension mais fermée à la modification.
+Vous devez pouvoir ajouter de nouvelles fonctionnalités à une classe sans modifier le code existant.
 
-A class should be open for extension but closed for modification.
-You need to be able to add new features to a class without modifying the existing code.
+Par exemple, avec la classe animal, au lieu d'avoir une méthode `MakeSound` avec un paramètre `string typeSound` comme ceci :
 
-For exemple, with animal class, instead of having a method `MakeSound` with a parameter `string typeSound` like that:,
-
-❌**Bad example:**
+❌**Mauvais exemple :**
 ```csharp
 class Animal {
     public string Name { get; set; }
@@ -89,16 +88,16 @@ class Animal {
 
     public void MakeSound(string typeSound) {
         if (typeSound == "bark") {
-            Console.WriteLine($"{Name} is barking");
+            Console.WriteLine($"{Name} aboie");
         } else if (typeSound == "meow") {
-            Console.WriteLine($"{Name} is meowing");
+            Console.WriteLine($"{Name} miaule");
         }
     }
 }
 ```
 
-✅**Good example:**
-We can [abstract](../object-oriented-programming#abstract) the `Animal` class like that:
+✅**Bon exemple :**
+Nous pouvons [abstraire](../object-oriented-programming#abstraction) la classe `Animal` comme ceci :
 
 ```csharp
 public abstract class Animal {
@@ -110,26 +109,24 @@ public abstract class Animal {
 
 public class Dog : Animal {
     public override void MakeSound() {
-        Console.WriteLine($"{Name} is barking");
+        Console.WriteLine($"{Name} aboie");
     }
 }
 
 public class Cat : Animal {
     public override void MakeSound() {
-        Console.WriteLine($"{Name} is meowing");
+        Console.WriteLine($"{Name} miaule");
     }
 }
-
 ```
 
-Now we can add a new animal type without modifying the existing code.
+Maintenant nous pouvons ajouter un nouveau type d'animal sans modifier le code existant.
 
+### L - Principe de Substitution de Liskov
 
-### L - Liskov Substitution Principle
+Les objets d'une superclasse devraient être remplaçables par des objets d'une sous-classe sans affecter la justesse du programme.
 
-Objects of a superclass should be replaceable with objects of a subclass without affecting the correctness of the program.
-
-If we take the example of the `Animal` class, we can see that the `Dog` and `Cat` classes are substitutable by the `Animal` class.
+Si nous prenons l'exemple de la classe `Animal`, nous pouvons voir que les classes `Dog` et `Cat` sont substituables par la classe `Animal`.
 
 ```csharp
 public class Animal {
@@ -137,26 +134,24 @@ public class Animal {
     public int Age { get; set; }
 
     public void Eat() {
-        Console.WriteLine($"{Name} is eating");
+        Console.WriteLine($"{Name} mange");
     }
 }
 
 public class Dog : Animal {}
 
 public class Cat : Animal {}
-
 ```
-Like that, we can replace the `Dog` and `Cat` classes by the `Animal` class without affecting the correctness of the program.
 
+Comme cela, nous pouvons remplacer les classes `Dog` et `Cat` par la classe `Animal` sans affecter la justesse du programme.
 
-### I - Interface Segregation Principle
+### I - Principe de Ségrégation des Interfaces
 
-Clients should not be forced to depend on interfaces they do not use.
+Les clients ne devraient pas être forcés de dépendre d'interfaces qu'ils n'utilisent pas.
 
-The bad idea is to have a class `Animal` with a method `Eat` and a class `Dog` that inherits 
-from the `Animal` class and overrides the `Eat` method.
+La mauvaise idée est d'avoir une classe `Animal` avec une méthode `Eat` et une classe `Dog` qui hérite de la classe `Animal` et surcharge la méthode `Eat`.
 
-❌**Bad example:**
+❌**Mauvais exemple :**
 ```csharp
 public interface IAction{
     void Eat();
@@ -166,22 +161,22 @@ public interface IAction{
 
 public class Dog : IAction {
     public void Eat() {
-        Console.WriteLine("Dog is eating");
+        Console.WriteLine("Le chien mange");
     }
 
     public void Fly() {
-        throw new NotImplementedException("Dogs can't fly");
+        throw new NotImplementedException("Les chiens ne peuvent pas voler");
     }
 
     public void MakeSound() {
-        Console.WriteLine("Dog barks");
+        Console.WriteLine("Le chien aboie");
     }
 }
 ```
 
-The better way is to split the interface into smaller interfaces, like that:
+La meilleure façon est de diviser l'interface en interfaces plus petites, comme ceci :
 
-✅**Good example:**
+✅**Bon exemple :**
 ```csharp
 public interface IEat{
     void Eat();
@@ -197,39 +192,36 @@ public interface IMakeSound{
 
 public class Dog : IEat, IMakeSound {
     public void Eat() {
-        Console.WriteLine("Dog is eating");
+        Console.WriteLine("Le chien mange");
     }
 
     public void MakeSound() {
-        Console.WriteLine("Dog barks");
+        Console.WriteLine("Le chien aboie");
     }
 }
 
 public class Bird : IFly, IMakeSound, IEat {
     public void Eat() {
-        Console.WriteLine("Bird is eating");
+        Console.WriteLine("L'oiseau mange");
     }
 
     public void Fly() {
-        Console.WriteLine("Bird is flying");
+        Console.WriteLine("L'oiseau vole");
     }
 
     public void MakeSound() {
-        Console.WriteLine("Bird is chirping");
+        Console.WriteLine("L'oiseau gazouille");
     }
 }
 ```
 
+### D - Principe d'Inversion des Dépendances
 
+Les modules de haut niveau ne devraient pas dépendre des modules de bas niveau. Les deux devraient dépendre d'abstractions.
 
-### D - Dependency Inversion Principle
+Si nous prenons l'exemple avec la classe `Animal`, nous pouvons voir que la classe `Dog` dépend de l'interface `IEat`.
 
-High-level modules should not depend on low-level modules. Both should depend on abstractions.
-
-If we take the example with the `Animal` class,
-we can see that the `Dog` class is dependent on the `IEat` interface.
-
-❌**Bad example:**
+❌**Mauvais exemple :**
 
 ```csharp
 public class Animal {
@@ -239,21 +231,20 @@ public class Animal {
 
 public class IEat{
     void Eat(){
-        Console.WriteLine("Animal is eating");
+        Console.WriteLine("L'animal mange");
     }
 }
 
 public class Dog : Animal, IEat {
     public void Eat() {
-        Console.WriteLine("Dog is eating");
+        Console.WriteLine("Le chien mange");
     }
 }
 ```
 
-The `Dog` class is dependent on the `IEat` interface,
-but the `Animal` class is not dependent on the `IEat` interface.
+La classe `Dog` dépend de l'interface `IEat`, mais la classe `Animal` ne dépend pas de l'interface `IEat`.
 
-✅**Good example:**
+✅**Bon exemple :**
 ```csharp
 public class Animal {
     public string Name { get; set; }
@@ -266,7 +257,7 @@ public interface IEat {
 
 public class Mouth : IEat {
     public void Eat() {
-        Console.WriteLine("Animal uses mouth to eat");
+        Console.WriteLine("L'animal utilise sa bouche pour manger");
     }
 }
 
@@ -281,21 +272,18 @@ public class Dog : Animal, IEat {
         _eat.Eat();
     }
 }
-
 ```
 
-If we take an example more realistic; with the `OrderProcessor` class, we can see that the `OrderProcessor` class is dependent on the `EmailService` class.
-
+Si nous prenons un exemple plus réaliste ; avec la classe `OrderProcessor`, nous pouvons voir que la classe `OrderProcessor` dépend de la classe `EmailService`.
 
 ```csharp
-
 public interface IMessageService {
     void Send(string message);
 }
 
 public class EmailService : IMessageService {
     public void Send(string message) {
-        Console.WriteLine($"Sending email: {message}");
+        Console.WriteLine($"Envoi d'email : {message}");
     }
 }
 
@@ -308,20 +296,18 @@ public class OrderProcessor {
 
     public void ProcessOrder() {
         // ...
-        _messageService.Send("Order confirmed");
+        _messageService.Send("Commande confirmée");
     }
 }
-
 ```
 
-## What is the KISS principle?
+## Qu'est-ce que le principe KISS ?
 
-Keep It Simple, Stupid.
+Keep It Simple, Stupid (Garde ça Simple, Stupide).
 
-The KISS principle states that simple solutions are often better than complex ones.
+Le principe KISS énonce que les solutions simples sont souvent meilleures que les solutions complexes.
 
-If we take an example realistic; with the filter of active users, 
-we can see that the filter is dependent on the `User` class.
+Si nous prenons un exemple réaliste ; avec le filtre des utilisateurs actifs, nous pouvons voir que le filtre dépend de la classe `User`.
 
 ```csharp
 var activeUsers = new List<User>();
@@ -332,7 +318,7 @@ foreach (var user in users) {
 }
 ```
 
-The better way to do it is to use Linq:
+La meilleure façon de le faire est d'utiliser Linq :
 
 ```csharp
 var activeUsers = users.Where(user => user.IsActive == true).ToList();
@@ -340,24 +326,24 @@ var activeUsers = users.Where(user => user.IsActive == true).ToList();
 
 ## Conclusion
 
-The SOLID principles help to create a more maintainable, scalable, and robust software, but it can be difficult to respect them all at the same time.
-The KISS principle is a good way to keep the code simple and readable.
+Les principes SOLID aident à créer un logiciel plus maintenable, évolutif et robuste, mais il peut être difficile de les respecter tous en même temps.
+Le principe KISS est un bon moyen de garder le code simple et lisible.
 
-## Quizz
+## Quiz
 
--  <span class="hover-reveal" data-tooltip="Single Responsibility Principle">What is the S in SOLID?</span>
-- <span class="hover-reveal" data-tooltip="Open/Closed Principle">What is the O in SOLID?</span>
-- <span class="hover-reveal" data-tooltip="Liskov Substitution Principle">What is the L in SOLID?</span>
-- <span class="hover-reveal" data-tooltip="Interface Segregation Principle">What is the I in SOLID?</span>
-- <span class="hover-reveal" data-tooltip="Dependency Inversion Principle">What is the D in SOLID?</span>
-- <span class="hover-reveal" data-tooltip="KISS Principle">What is the KISS principle?</span>
-- <span class="hover-reveal" data-tooltip="An abstract class is a class that cannot be instantiated. It can only be inherited by other classes.">What's an abstract class?</span>
+- <span class="hover-reveal" data-tooltip="Principe de Responsabilité Unique">Qu'est-ce que le S dans SOLID ?</span>
+- <span class="hover-reveal" data-tooltip="Principe Ouvert/Fermé">Qu'est-ce que le O dans SOLID ?</span>
+- <span class="hover-reveal" data-tooltip="Principe de Substitution de Liskov">Qu'est-ce que le L dans SOLID ?</span>
+- <span class="hover-reveal" data-tooltip="Principe de Ségrégation des Interfaces">Qu'est-ce que le I dans SOLID ?</span>
+- <span class="hover-reveal" data-tooltip="Principe d'Inversion des Dépendances">Qu'est-ce que le D dans SOLID ?</span>
+- <span class="hover-reveal" data-tooltip="Principe KISS">Qu'est-ce que le principe KISS ?</span>
+- <span class="hover-reveal" data-tooltip="Une classe abstraite est une classe qui ne peut pas être instanciée. Elle ne peut être héritée que par d'autres classes.">Qu'est-ce qu'une classe abstraite ?</span>
 
-Hover the text to see the answer. (Doesn't work on mobile)
+Survolez le texte pour voir la réponse. (Ne fonctionne pas sur mobile)
 
-If you haven't understood, I invite you to reread the content of the article or to read the references.
+Si vous n'avez pas compris, je vous invite à relire le contenu de l'article ou à consulter les références.
 
-## References
+## Références
 
-- [SOLID Principles](https://en.wikipedia.org/wiki/SOLID)
-- [KISS Principle](https://en.wikipedia.org/wiki/KISS_principle)
+- [Principes SOLID](https://fr.wikipedia.org/wiki/Principe_SOLID)
+- [Principe KISS](https://fr.wikipedia.org/wiki/Principe_KISS)
