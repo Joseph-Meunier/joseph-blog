@@ -1,45 +1,47 @@
 ---
 title: 'REST API'
-description: 'How to write a REST API?'
-pubDate: '2025-06-12'
+description: "C'est quoi une API REST?"
+writingStartDate: '2025-06-12'
+publishingDate: '2025-06-12'
+lastUpdated: '2025-06-21'
 heroImage: '/joseph-blog/articles/api-rest/rest-api-title.webp'
 IsPublished: true
 ---
 
-## What is a REST API?
+## C'est quoi une API REST?
 
 A **REST API** (for *Representational State Transfer*) is a means of communication between different applications, often between a client (browser, mobile app, etc.) and a server. It allows the manipulation of **resources** (data) through well-defined **URLs**, using **HTTP verbs**.
 
 ### Table of contents
 
-- [Example: SWAPI](#example-swapi)
-- [HTTP Verbs](#http-verbs)
-- [Response Format](#response-format)
-- [In Summary](#in-summary)
+- [Exemple: SWAPI](#exemple-swapi)
+- [Verbes HTTP](#verbes-http)
+- [Format de réponse](#format-de-reponse)
+- [En résumé](#en-resume)
 
-### Example: SWAPI
+### Exemple: SWAPI
 
 Let's take the example of the [SWAPI](https://swapi.info/) API, a public API that provides data from the Star Wars universe. 
 Here's a typical URL: https://swapi.info/api/films.
 
-#### Let's break down this URL:
+#### Décomposons cette URL:
 
 - **https**: The protocol used is `HTTPS` (HyperText Transfer Protocol Secure). It enables communication between a client and a server, with a security layer (encryption).
 - **://**: This separator immediately follows the protocol and precedes the domain name.
 - **swapi.info**: This is the domain name of the server hosting the API.
 - **/api**: This indicates that we're entering the "API" part of the site. This prefix is a commonly used convention.
-- **/films**: This is the targeted resource. Here, we want to access Star Wars films.
+- **/films**: Cette partie de l'URL est la ressource cible. Ici, nous voulons accéder aux films de Star Wars.
 
 The combination of this URL allows access, via a browser or HTTP request, to the list of available films.
 
-### HTTP Verbs
+### Verbes HTTP
 
 A REST API relies on the use of **HTTP verbs**, which indicate the action we want to perform:
 
-- **GET**: Read a resource (for example, retrieve the list of films).
-- **POST**: Create a new resource (e.g., add a user).
-- **PUT**: Update an existing resource.
-- **DELETE**: Delete a resource.
+- **GET**: Lire une ressource (par exemple, récupérer la liste des films).
+- **POST**: Créer une nouvelle ressource (par exemple, ajouter un utilisateur).
+- **PUT**: Mettre à jour une ressource existante.
+- **DELETE**: Supprimer une ressource.
 
 ![Description of the HTTP verbs](/joseph-blog/articles/api-rest/rest-api-schema.webp)
 
@@ -51,7 +53,7 @@ GET https://swapi.info/api/films
 
 This means: "I want to retrieve (GET) all available films from the SWAPI."
 
-### Response Format
+### Format de réponse
 
 REST APIs often return responses in JSON format. Here's a simplified example of a response you might get:
 
@@ -71,7 +73,7 @@ REST APIs often return responses in JSON format. Here's a simplified example of 
 
 This format is easily readable by programs and can be used to display data in an application or website.
 
-### In Summary
+### En résumé
 
 A REST API uses clear URLs and HTTP verbs to enable resource manipulation. Thanks to this simple and standardized operation, it facilitates exchanges between computer systems. Whether you're a web or mobile developer, knowing how to consume a REST API is a fundamental skill!
 
