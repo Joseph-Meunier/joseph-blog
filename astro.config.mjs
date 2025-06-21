@@ -11,14 +11,10 @@ export default defineConfig({
 	integrations: [mdx(), sitemap()],
 	markdown: {
 		shikiConfig: {
-			// Choisissez un thème parmi les thèmes disponibles
 			theme: 'one-dark-pro',
-			// Ou utilisez un thème personnalisé
-			// theme: 'github-light',
-			// theme: 'github-dark',
-			// theme: 'dracula',
-			// theme: 'nord',
-			// theme: 'one-dark-pro',
 		}
+	},
+	build: {
+		assets: 'assets'
 	}
 });
