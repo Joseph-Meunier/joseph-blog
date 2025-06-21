@@ -9,11 +9,11 @@ import FormattedDate from '../../components/FormattedDate.astro';
 const allPosts = await getCollection('blog');
 const posts = allPosts
 	.filter((post) => post.data.IsPublished === true)
-	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+	.sort((a, b) => b.data.publishingDate.valueOf() - a.data.publishingDate.valueOf());
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 		<style>
@@ -98,7 +98,7 @@ const posts = allPosts
 									<img width={720} height={360} src={post.data.heroImage} alt="" />
 									<h4 class="title">{post.data.title}</h4>
 									<p class="date">
-										<FormattedDate date={post.data.pubDate} />
+										<FormattedDate date={post.data.publishingDate} />
 									</p>
 								</a>
 							</li>

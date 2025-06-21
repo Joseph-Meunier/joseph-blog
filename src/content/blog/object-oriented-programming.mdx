@@ -1,33 +1,35 @@
 ---
-title: 'Object-Oriented Programming'
-description: 'Object-Oriented Programming'
-pubDate: '2025-06-19'
+title: 'Programmation Orientée Objet'
+description: 'C''est quoi la programmation orientée objet?'
+writingStartDate: '2025-06-19'
+publishingDate: '2025-06-19'
+lastUpdated: '2025-06-21'
 heroImage: '/joseph-blog/articles/object-oriented-programming/title.webp'
-IsPublished: true
+IsPublished: false
 ---
 
-## What is OOP?
+## C'est quoi la programmation orientée objet?
 
-Object-oriented programming (OOP) is a programming paradigm based on the concept of "objects", which can contain data and code to manipulate that data.
+La programmation orientée objet (POO) est un paradigme de programmation basé sur le concept d'"objets", qui peuvent contenir des données et du code pour manipuler ces données.
 
-## Table of contents
+## Table des matières
 
-- [What is OOP?](#what-is-oop)
-- [Class](#class)
-- [Object](#object)
-- [Instantiation](#instantiation)
-- [Properties](#properties)
-- [Methods](#methods)
-- [The 3 Principles of OOP](#the-3-principles-of-oop)
+- [C'est quoi la programmation orientée objet?](#cest-quoi-la-programmation-orientee-objet)
+- [Classe](#classe)
+- [Objet](#objet)
+- [Instanciation](#instanciation)
+- [Propriétés](#proprietes)
+- [Méthodes](#methodes)
+- [Les 3 principes de la POO](#les-3-principes-de-la-poo)
 - [Encapsulation](#encapsulation)
-- [Inheritance](#inheritance)
-- [Polymorphism](#polymorphism)
-- [Abstract](#abstract)
+- [Héritage](#heritage)
+- [Polymorphisme](#polymorphisme)
+- [Abstraction](#abstraction)
 - [Conclusion](#conclusion)
 
-Let's take the example of an animal.
+Prenons l'exemple d'un animal.
 
-Before, if we didn't use OOP, we would have code like this:
+Avant, si nous n'utilisions pas la POO, nous aurions du code comme ceci :
 
 ```csharp
 var animalName = "John";
@@ -37,7 +39,7 @@ var animalName = "Jane";
 var animalAge = 7;
 ```
 
-But now, if we use OOP, we would have code like this:
+Mais maintenant, si nous utilisons la POO, nous aurions du code comme ceci :
 
 ```csharp
 var animal = new Animal();
@@ -49,12 +51,12 @@ animal2.Name = "Jane";
 animal2.Age = 6;
 ```
 
-This allows us to create objects who can be instantiated and have properties and methods.
+Cela nous permet de créer des objets qui peuvent être instanciés et avoir des propriétés et des méthodes.
 
-### Class
+### Classe
 
-A class is a blueprint for creating objects.
-It defines the properties and methods of an object.
+Une classe est un plan pour créer des objets.
+Elle définit les propriétés et les méthodes d'un objet.
 
 ```csharp
 class Animal {
@@ -63,39 +65,38 @@ class Animal {
 }
 ```
 
-### Object
+### Objet
 
-An object is an instance of a class.
-It has the properties and methods of the class.
-
-```csharp
-var animal = new Animal();
-```
-
-### Instantiation
-
-Instantiation is the process of creating an object from a class.
+Un objet est une instance d'une classe.
+Il possède les propriétés et les méthodes de la classe.
 
 ```csharp
 var animal = new Animal();
 ```
 
-### Properties
+### Instanciation
 
-Properties are variables that belong to an object.
-In our example, the properties are `Name` and `Age`.
+L'instanciation est le processus de création d'un objet à partir d'une classe.
+
+```csharp
+var animal = new Animal();
+```
+
+### Propriétés
+
+Les propriétés sont des variables qui appartiennent à un objet.
+Dans notre exemple, les propriétés sont `Name` et `Age`.
 
 ```csharp
 animal.Name = "John";
 animal.Age = 10;
 ```
 
-### Methods
+### Méthodes
 
-Methods are functions that belong to an object.
-In our example, we can add the methods `Eat`, `Sleep`, and `MakeSound`.
-We can also see that we can access the properties of the object in the methods.
-
+Les méthodes sont des fonctions qui appartiennent à un objet.
+Dans notre exemple, nous pouvons ajouter les méthodes `Eat`, `Sleep`, et `MakeSound`.
+Nous pouvons aussi voir que nous pouvons accéder aux propriétés de l'objet dans les méthodes.
 
 ```csharp
 class Animal {
@@ -103,52 +104,51 @@ class Animal {
     private int age;
 
     public void Eat() {
-        Console.WriteLine($"{name} is eating");
+        Console.WriteLine($"{name} mange");
     }
 
     public void Sleep() {
-        Console.WriteLine($"{name} is sleeping");
+        Console.WriteLine($"{name} dort");
     }
 
     public void MakeSound() {
-        Console.WriteLine($"{name} is making a sound");
+        Console.WriteLine($"{name} fait un son");
     }
 }
 ```
 
+## Les 3 principes de la POO
 
-
-## The 3 Principles of OOP
-
-In OOP, we have 3 principles:
+En POO, nous avons 3 principes :
 
 1. Encapsulation
-2. Inheritance
-3. Polymorphism
+2. Héritage
+3. Polymorphisme
 
 ### Encapsulation
 
-Encapsulation is the principle of encapsulating the data and methods of an object.
-This allows us to protect the data and methods of an object by making them private.
-It also makes the data and methods of an object easier to maintain and test.
+L'encapsulation est le principe d'encapsuler les données et les méthodes d'un objet.
+Cela nous permet de protéger les données et les méthodes d'un objet en les rendant privées.
+Cela rend aussi les données et les méthodes d'un objet plus faciles à maintenir et à tester.
 
-In our example, we have encapsulated the data and methods of an object.
-The properties are private and the methods are public.
+Dans notre exemple, nous avons encapsulé les données et les méthodes d'un objet.
+Les propriétés sont privées et les méthodes sont publiques.
+
 ```csharp
 class Animal {
     private string name;
     private int age;
 
     public void Eat() {
-        Console.WriteLine($"{name} is eating");
+        Console.WriteLine($"{name} mange");
     }
 
     public void Sleep() {
-        Console.WriteLine($"{name} is sleeping");
+        Console.WriteLine($"{name} dort");
     }
 
     public void MakeSound() {
-        Console.WriteLine($"{name} is making a sound");
+        Console.WriteLine($"{name} fait un son");
     }
 }
 
@@ -161,47 +161,46 @@ animal.Sleep();
 animal.MakeSound();
 ```
 
-If we execute it, we get the following result:
+Si nous l'exécutons, nous obtenons le résultat suivant :
 ```csharp
-"John is eating"
-"John is sleeping"
-"John is making a sound"
+"John mange"
+"John dort"
+"John fait un son"
 ```
 
+### Héritage
 
-### Inheritance
+L'héritage est le principe d'hériter des données et des méthodes d'un objet.
+Cela nous permet de créer une classe qui hérite des propriétés et des méthodes d'une autre classe.
+Cela nous permet de réduire la duplication de code et de rendre le code plus facile à maintenir, à lire et à tester.
 
-Inheritance is the principle of inheriting data and methods from an object.
-This allows us to create a class that inherits properties and methods from another class.
-This allows us to reduce code duplication and make the code easier to maintain, read, and test.
-
-If we take our example again, we can create a `Dog` class and a `Cat` class that inherit from the `Animal` class.
+Si nous reprenons notre exemple, nous pouvons créer une classe `Dog` et une classe `Cat` qui héritent de la classe `Animal`.
 
 ```csharp
 class Dog : Animal {
     public override void MakeSound() {
-        Console.WriteLine($"{name} is barking");
+        Console.WriteLine($"{name} aboie");
     }
 }
 
 class Cat : Animal {
     public override void MakeSound() {
-        Console.WriteLine($"{name} is meowing");
+        Console.WriteLine($"{name} miaule");
     }
 }
 
 ```
 We can see that the `Dog` class and the `Cat` class inherit from the `Animal` class and that the `MakeSound` method is redefined (it is overridden) in the `Dog` and `Cat` classes.
 
-### Polymorphism
+### Polymorphisme
 
-Polymorphism is the principle of polymorphizing the data and methods of an object.
-This means that we can use the same methods for different objects.
+Le polymorphisme est le principe de polymorphiser les données et les méthodes d'un objet.
+Cela signifie que nous pouvons utiliser les mêmes méthodes pour différents objets.
 
-If we take our example again, we can create a `Dog` class and a `Cat` class that inherit from the `Animal` class and we can use the same methods for different objects.
-Below, we create an `animal` object of the `Animal` class and we call the `MakeSound` method which is defined in the `Animal` class.
-Then, we create a `dog` object of the `Dog` class and we call the `MakeSound` method which is defined in the `Dog` class.
-Then, we create a `cat` object of the `Cat` class and we call the `MakeSound` method which is defined in the `Cat` class.
+Si nous reprenons notre exemple, nous pouvons créer une classe `Dog` et une classe `Cat` qui héritent de la classe `Animal` et nous pouvons utiliser les mêmes méthodes pour différents objets.
+Ci-dessous, nous créons un objet `animal` de la classe `Animal` et nous appelons la méthode `MakeSound` qui est définie dans la classe `Animal`.
+Ensuite, nous créons un objet `dog` de la classe `Dog` et nous appelons la méthode `MakeSound` qui est définie dans la classe `Dog`.
+Enfin, nous créons un objet `cat` de la classe `Cat` et nous appelons la méthode `MakeSound` qui est définie dans la classe `Cat`.
 
 ```csharp
 var animal = new Animal();
@@ -217,21 +216,21 @@ cat.Name = "Whiskers";
 cat.MakeSound();
 ```
 
-If we execute it, we get the following result:
+Si nous l'exécutons, nous obtenons le résultat suivant :
 
 ```csharp
-"John is making a sound"
-"Rex is barking"
-"Whiskers is meowing"
+"John fait un son"
+"Rex aboie"
+"Whiskers miaule"
 ```
 
-## Abstract
+## Abstraction
 
-Abstract is a keyword that allows us to create a class that cannot be instantiated.
+Abstract est un mot-clé qui nous permet de créer une classe qui ne peut pas être instanciée.
 
-We can also see that the `Animal` class doesn't really need to be instantiated.
-An animal is necessarily of a species.
-To prevent instantiation of the `Animal` class, we can make it abstract.
+Nous pouvons aussi voir que la classe `Animal` n'a pas vraiment besoin d'être instanciée.
+Un animal est nécessairement d'une espèce.
+Pour empêcher l'instanciation de la classe `Animal`, nous pouvons la rendre abstraite.
 
 ```csharp
 abstract class Animal {
@@ -243,21 +242,21 @@ abstract class Animal {
 
 ## Conclusion
 
-OOP is a programming paradigm that allows us to create objects that have properties and methods.
-It makes the code easier to maintain, read, and test.
+La POO est un paradigme de programmation qui nous permet de créer des objets qui ont des propriétés et des méthodes.
+Cela rend le code plus facile à maintenir, à lire et à tester.
 
 ## Quiz
 
-- <span class="hover-reveal" data-tooltip="Object-oriented programming (OOP) is a programming paradigm based on the concept of 'objects', which can contain data and code to manipulate that data.">What is OOP?</span>
-- <span class="hover-reveal" data-tooltip="In OOP, we have 3 principles: encapsulation, inheritance, and polymorphism.">What are the 3 principles of OOP?</span>
-- <span class="hover-reveal" data-tooltip="Encapsulation is the principle of encapsulating the data and methods of an object. This allows us to protect the data and methods of an object by making them private. It also makes the data and methods of an object easier to maintain and test.">What is encapsulation?</span>
-- <span class="hover-reveal" data-tooltip="Inheritance is the principle of inheriting data and methods from an object. This allows us to create a class that inherits properties and methods from another class. This allows us to reduce code duplication and make the code easier to maintain, read, and test.">What is inheritance?</span>
-- <span class="hover-reveal" data-tooltip="Polymorphism is the principle of polymorphizing the data and methods of an object. This means that we can use the same methods for different objects.">What is polymorphism?</span>
+- <span class="hover-reveal" data-tooltip="La programmation orientée objet (POO) est un paradigme de programmation basé sur le concept d'objets, qui peuvent contenir des données et du code pour manipuler ces données.">Qu'est-ce que la POO ?</span>
+- <span class="hover-reveal" data-tooltip="En POO, nous avons 3 principes : encapsulation, héritage et polymorphisme.">Quels sont les 3 principes de la POO ?</span>
+- <span class="hover-reveal" data-tooltip="L'encapsulation est le principe d'encapsuler les données et les méthodes d'un objet. Cela nous permet de protéger les données et les méthodes d'un objet en les rendant privées. Cela rend aussi les données et les méthodes d'un objet plus faciles à maintenir et à tester.">Qu'est-ce que l'encapsulation ?</span>
+- <span class="hover-reveal" data-tooltip="L'héritage est le principe d'hériter des données et des méthodes d'un objet. Cela nous permet de créer une classe qui hérite des propriétés et des méthodes d'une autre classe. Cela nous permet de réduire la duplication de code et de rendre le code plus facile à maintenir, à lire et à tester.">Qu'est-ce que l'héritage ?</span>
+- <span class="hover-reveal" data-tooltip="Le polymorphisme est le principe de polymorphiser les données et les méthodes d'un objet. Cela signifie que nous pouvons utiliser les mêmes méthodes pour différents objets.">Qu'est-ce que le polymorphisme ?</span>
 
-Hover the text to see the answer. (Doesn't work on mobile)
+Survolez le texte pour voir la réponse. (Ne fonctionne pas sur mobile)
 
-If you haven't understood, I invite you to reread the content of the article or to read the references.
+Si vous n'avez pas compris, je vous invite à relire le contenu de l'article ou à consulter les références.
 
-## References
+## Références
 
-- [Object-Oriented Programming](https://en.wikipedia.org/wiki/Object-oriented_programming)
+- [Programmation Orientée Objet](https://fr.wikipedia.org/wiki/Programmation_orient%C3%A9e_objet)
