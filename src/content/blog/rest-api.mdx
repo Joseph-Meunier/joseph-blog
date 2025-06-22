@@ -24,7 +24,7 @@ Elle permet de structurer la manipulation de **ressources** (données) via des *
 
 ### Les principes de REST
 
-REST repose sur 5 contraintes architecturales. Les respecter rend une API "RESTful" :
+REST repose sur 5 contraintes architecturales et une facultative. Les respecter rend une API "RESTful" :
 
 #### 1. **Client-Serveur**
 
@@ -47,8 +47,9 @@ REST repose sur 5 contraintes architecturales. Les respecter rend une API "RESTf
 #### 4. **Interface uniforme**
 
   - Tous les échanges passent par une interface standardisée : les méthodes HTTP (GET, POST, etc.) 
-    [(voir Verbes HTTP)](#verbes-http), les URLs pour identifier les ressources (ce sont tous les éléments de données de l'API (ex. : films, acteurs, etc.)), 
-    les statuts de réponse HTTP, etc.
+    [(voir Verbes HTTP)](#verbes-http), les ressources sont identifiées de manière unique par des URLs.
+    (Les ressources représentent les entités manipulées par l’API (ex. : films, personnages, vaisseaux)), 
+    les statuts de réponse HTTP [(voir Les statuts de réponse HTTP)](#les-statuts-de-reponse-http).
 
 #### 5. **Système en couches (Layered System)**
 
@@ -128,6 +129,9 @@ Voici les statuts les plus courants :
 - **204 No Content** : La requête a été traitée avec succès mais ne retourne pas de contenu.
 - **400 Bad Request** : La requête est invalide.
 - **401 Unauthorized** : L'utilisateur n'est pas autorisé à accéder à la ressource.
+- **403 Forbidden** : Authentifié mais pas autorisé.
+- **404 Not Found** : Ressource non trouvée.
+- **500 Internal Server Error** : Erreur côté serveur.
 
 ### En résumé
 
