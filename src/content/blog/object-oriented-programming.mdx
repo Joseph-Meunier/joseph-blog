@@ -3,9 +3,9 @@ title: 'Programmation Orientée Objet'
 description: 'C''est quoi la programmation orientée objet?'
 writingStartDate: '2025-06-19'
 publishingDate: '2025-06-19'
-lastUpdated: '2025-06-21'
+lastUpdated: '2025-06-22'
 heroImage: '/joseph-blog/articles/object-oriented-programming/title.webp'
-IsPublished: false
+IsPublished: true
 ---
 
 ## C'est quoi la programmation orientée objet?
@@ -18,11 +18,11 @@ La programmation orientée objet (POO) est un paradigme de programmation basé s
 - [Classe](#classe)
 - [Objet](#objet)
 - [Instanciation](#instanciation)
-- [Propriétés](#proprietes)
-- [Méthodes](#methodes)
-- [Les 3 principes de la POO](#les-3-principes-de-la-poo)
+- [Propriétés](#propriétés)
+- [Méthodes](#méthodes)
+- [Les 4 principes de la POO](#les-4-principes-de-la-poo)
 - [Encapsulation](#encapsulation)
-- [Héritage](#heritage)
+- [Héritage](#héritage)
 - [Polymorphisme](#polymorphisme)
 - [Abstraction](#abstraction)
 - [Conclusion](#conclusion)
@@ -32,19 +32,19 @@ Prenons l'exemple d'un animal.
 Avant, si nous n'utilisions pas la POO, nous aurions du code comme ceci :
 
 ```csharp
-var animalName = "John";
-var animalAge = 2;
+var animal1Name = "John";
+var animal1Age = 2;
 
-var animalName = "Jane";
-var animalAge = 7;
+var animal2Name = "Jane";
+var animal2Age = 7;
 ```
 
 Mais maintenant, si nous utilisons la POO, nous aurions du code comme ceci :
 
 ```csharp
-var animal = new Animal();
-animal.Name = "John";
-animal.Age = 10;
+var animal1 = new Animal();
+animal1.Name = "John";
+animal1.Age = 10;
 
 var animal2 = new Animal();
 animal2.Name = "Jane";
@@ -53,7 +53,7 @@ animal2.Age = 6;
 
 Cela nous permet de créer des objets qui peuvent être instanciés et avoir des propriétés et des méthodes.
 
-### Classe
+## Classe
 
 Une classe est un plan pour créer des objets.
 Elle définit les propriétés et les méthodes d'un objet.
@@ -65,7 +65,7 @@ class Animal {
 }
 ```
 
-### Objet
+## Objet
 
 Un objet est une instance d'une classe.
 Il possède les propriétés et les méthodes de la classe.
@@ -74,7 +74,7 @@ Il possède les propriétés et les méthodes de la classe.
 var animal = new Animal();
 ```
 
-### Instanciation
+## Instanciation
 
 L'instanciation est le processus de création d'un objet à partir d'une classe.
 
@@ -82,7 +82,7 @@ L'instanciation est le processus de création d'un objet à partir d'une classe.
 var animal = new Animal();
 ```
 
-### Propriétés
+## Propriétés
 
 Les propriétés sont des variables qui appartiennent à un objet.
 Dans notre exemple, les propriétés sont `Name` et `Age`.
@@ -92,7 +92,7 @@ animal.Name = "John";
 animal.Age = 10;
 ```
 
-### Méthodes
+## Méthodes
 
 Les méthodes sont des fonctions qui appartiennent à un objet.
 Dans notre exemple, nous pouvons ajouter les méthodes `Eat`, `Sleep`, et `MakeSound`.
@@ -100,65 +100,87 @@ Nous pouvons aussi voir que nous pouvons accéder aux propriétés de l'objet da
 
 ```csharp
 class Animal {
-    private string name;
-    private int age;
+    private string Name;
+    private int Age;
 
     public void Eat() {
-        Console.WriteLine($"{name} mange");
+        Console.WriteLine($"{this.Name} mange");
     }
 
     public void Sleep() {
-        Console.WriteLine($"{name} dort");
+        Console.WriteLine($"{this.Name} dort");
     }
 
     public void MakeSound() {
-        Console.WriteLine($"{name} fait un son");
+        Console.WriteLine($"{this.Name} fait un son");
     }
 }
 ```
 
-## Les 3 principes de la POO
+NB: 
+`this` est une référence à l'objet en cours.
+Il est utilisé pour accéder aux propriétés et aux méthodes de l'objet en cours.
+Dans notre exemple, nous avons utilisé `this.Name` pour accéder à la propriété `Name` de l'objet en cours.
+A noter que `this` est optionnel dans la majorité des cas, sauf en cas d'ambiguïté (ex: nom de variable identique).
 
-En POO, nous avons 3 principes :
+## Les 4 principes de la POO
+
+En POO, nous avons 4 principes :
 
 1. Encapsulation
 2. Héritage
 3. Polymorphisme
+4. Abstraction
 
 ### Encapsulation
 
 L'encapsulation est le principe d'encapsuler les données et les méthodes d'un objet.
-Cela nous permet de protéger les données et les méthodes d'un objet en les rendant privées.
+On masque l’implémentation interne et expose des points d’accès contrôlés (ex: propriétés avec logique dans les get ou set)
 Cela rend aussi les données et les méthodes d'un objet plus faciles à maintenir et à tester.
 
-Dans notre exemple, nous avons encapsulé les données et les méthodes d'un objet.
-Les propriétés sont privées et les méthodes sont publiques.
+Dans notre exemple, nous avons encapsulé les données de l'objet en les rendant privées, et nous exposons des méthodes publiques pour interagir avec elles.
+Les données sont rendues privées et accessibles via des propriétés ou des méthodes publiques, permettant un contrôle sur la lecture/écriture.
 
 ```csharp
 class Animal {
-    private string name;
-    private int age;
+    private string _name; // Champs privés
+    private int _age; // Champs privés
+
+    public Animal(string name, int age) {
+        _name = name;
+        _age = age;
+    }
 
     public void Eat() {
-        Console.WriteLine($"{name} mange");
+        Console.WriteLine($"{_name} mange");
     }
 
     public void Sleep() {
-        Console.WriteLine($"{name} dort");
+        Console.WriteLine($"{_name} dort");
     }
 
     public void MakeSound() {
-        Console.WriteLine($"{name} fait un son");
+        Console.WriteLine($"{_name} fait un son");
     }
 }
 
-var animal = new Animal();
-animal.Name = "John";
-animal.Age = 10;
+
+var animal = new Animal("John", 10);
 
 animal.Eat();
 animal.Sleep();
 animal.MakeSound();
+```
+
+NB:
+Nous avons utilisé un constructeur pour initialiser les champs privés de l'objet.
+Le constructeur est une méthode qui est appelée lors de l'instanciation d'un objet.
+Dans notre exemple, nous avons utilisé un constructeur pour initialiser les champs privés `_name` et `_age` de l'objet.
+```csharp
+    public Animal(string name, int age) {
+        _name = name;
+        _age = age;
+    }
 ```
 
 Si nous l'exécutons, nous obtenons le résultat suivant :
@@ -167,6 +189,12 @@ Si nous l'exécutons, nous obtenons le résultat suivant :
 "John dort"
 "John fait un son"
 ```
+
+NB:
+Nous avons utilisé des getters et setters pour utiliser les propriétés `Name` dans notre cas, pour l'utiliser dans la méthode `MakeSound`.
+Getters et setters sont des méthodes qui permettent d'accéder aux propriétés de l'objet en cours.
+Getters sont utilisés pour récupérer la valeur d'une propriété.
+Setters sont utilisés pour modifier la valeur d'une propriété.
 
 ### Héritage
 
@@ -177,67 +205,96 @@ Cela nous permet de réduire la duplication de code et de rendre le code plus fa
 Si nous reprenons notre exemple, nous pouvons créer une classe `Dog` et une classe `Cat` qui héritent de la classe `Animal`.
 
 ```csharp
+class Animal {
+    public string Name { get; protected set; }
+    public abstract void MakeSound();
+}
+
 class Dog : Animal {
     public override void MakeSound() {
-        Console.WriteLine($"{name} aboie");
+        Console.WriteLine($"{this.Name} aboie");
     }
 }
 
 class Cat : Animal {
     public override void MakeSound() {
-        Console.WriteLine($"{name} miaule");
+        Console.WriteLine($"{this.Name} miaule");
     }
 }
 
 ```
-We can see that the `Dog` class and the `Cat` class inherit from the `Animal` class and that the `MakeSound` method is redefined (it is overridden) in the `Dog` and `Cat` classes.
+On peut voir que la classe Dog et la classe Cat héritent de la classe Animal, et que la méthode MakeSound est redéfinie (override) dans ces classes.
+A noter aussi que la propriété `Name` est protégée (protected), ce qui signifie que les classes qui héritent de la classe `Animal` peuvent accéder à la propriété `Name`, mais pas à la modifier.
 
 ### Polymorphisme
+Le polymorphisme permet d'utiliser une interface ou une méthode commune pour manipuler des objets de types différents (ayant un comportement spécifique).
+Exemple : appeler .MakeSound() sur un Animal, un Dog, ou un Cat, et obtenir un résultat différent.
 
-Le polymorphisme est le principe de polymorphiser les données et les méthodes d'un objet.
-Cela signifie que nous pouvons utiliser les mêmes méthodes pour différents objets.
-
-Si nous reprenons notre exemple, nous pouvons créer une classe `Dog` et une classe `Cat` qui héritent de la classe `Animal` et nous pouvons utiliser les mêmes méthodes pour différents objets.
-Ci-dessous, nous créons un objet `animal` de la classe `Animal` et nous appelons la méthode `MakeSound` qui est définie dans la classe `Animal`.
+Si nous reprenons notre exemple, nous pouvons créer une classe `Dog` et une classe `Cat` qui héritent de la classe `Animal` 
+et nous pouvons utiliser les mêmes méthodes pour différents objets.
 Ensuite, nous créons un objet `dog` de la classe `Dog` et nous appelons la méthode `MakeSound` qui est définie dans la classe `Dog`.
 Enfin, nous créons un objet `cat` de la classe `Cat` et nous appelons la méthode `MakeSound` qui est définie dans la classe `Cat`.
+Et nous les stockons dans une liste d'animaux.
 
 ```csharp
-var animal = new Animal();
-animal.Name = "John";
-animal.MakeSound();
+abstract class Animal {
+    public string Name { get; set; }
+    public abstract void MakeSound();
+}
 
-var dog = new Dog();
-dog.Name = "Rex";
-dog.MakeSound();
+class Dog : Animal {
+    public override void MakeSound() {
+        Console.WriteLine($"{Name} aboie");
+    }
+}
 
-var cat = new Cat();
-cat.Name = "Whiskers";
-cat.MakeSound();
+class Cat : Animal {
+    public override void MakeSound() {
+        Console.WriteLine($"{Name} miaule");
+    }
+}
+
+// Exemple d'utilisation
+var animals = new List<Animal>
+{
+    new Dog { Name = "Rex" },
+    new Cat { Name = "Mimi" }
+};
+
+foreach (var animal in animals)
+{
+    animal.MakeSound(); // Appelle la bonne version selon le type réel
+}
 ```
 
 Si nous l'exécutons, nous obtenons le résultat suivant :
 
 ```csharp
-"John fait un son"
 "Rex aboie"
-"Whiskers miaule"
+"Mimi miaule"
 ```
 
-## Abstraction
+### Abstraction
 
-Abstract est un mot-clé qui nous permet de créer une classe qui ne peut pas être instanciée.
+Le mot clé abstract permet de créer une classe qui ne peut pas être instanciée.
+
+Les classes qui héritent d'une classe abstraite doivent obligatoirement implémenter ses méthodes abstraites.
 
 Nous pouvons aussi voir que la classe `Animal` n'a pas vraiment besoin d'être instanciée.
 Un animal est nécessairement d'une espèce.
-Pour empêcher l'instanciation de la classe `Animal`, nous pouvons la rendre abstraite.
+Pour empêcher l'instanciation de la classe `Animal`, nous pouvons donc la rendre abstraite.
 
 ```csharp
 abstract class Animal {
     public string Name { get; set; }
     public int Age { get; set; }
+    public abstract void MakeSound();
 }
-
+class Dog : Animal {
+    public override void MakeSound() {
+        Console.WriteLine($"{Name} aboie");
+    }
+}
 ```
 
 ## Conclusion
@@ -248,10 +305,10 @@ Cela rend le code plus facile à maintenir, à lire et à tester.
 ## Quiz
 
 - <span class="hover-reveal" data-tooltip="La programmation orientée objet (POO) est un paradigme de programmation basé sur le concept d'objets, qui peuvent contenir des données et du code pour manipuler ces données.">Qu'est-ce que la POO ?</span>
-- <span class="hover-reveal" data-tooltip="En POO, nous avons 3 principes : encapsulation, héritage et polymorphisme.">Quels sont les 3 principes de la POO ?</span>
-- <span class="hover-reveal" data-tooltip="L'encapsulation est le principe d'encapsuler les données et les méthodes d'un objet. Cela nous permet de protéger les données et les méthodes d'un objet en les rendant privées. Cela rend aussi les données et les méthodes d'un objet plus faciles à maintenir et à tester.">Qu'est-ce que l'encapsulation ?</span>
+- <span class="hover-reveal" data-tooltip="En POO, nous avons 4 principes : encapsulation, héritage, polymorphisme et abstraction.">Quels sont les 4 principes de la POO ?</span>
+- <span class="hover-reveal" data-tooltip="L'encapsulation consiste à masquer les détails internes d’un objet (champs, implémentation) et à exposer des points d’accès contrôlés via des propriétés ou méthodes publiques.">Qu'est-ce que l'encapsulation ?</span>
 - <span class="hover-reveal" data-tooltip="L'héritage est le principe d'hériter des données et des méthodes d'un objet. Cela nous permet de créer une classe qui hérite des propriétés et des méthodes d'une autre classe. Cela nous permet de réduire la duplication de code et de rendre le code plus facile à maintenir, à lire et à tester.">Qu'est-ce que l'héritage ?</span>
-- <span class="hover-reveal" data-tooltip="Le polymorphisme est le principe de polymorphiser les données et les méthodes d'un objet. Cela signifie que nous pouvons utiliser les mêmes méthodes pour différents objets.">Qu'est-ce que le polymorphisme ?</span>
+- <span class="hover-reveal" data-tooltip="Le polymorphisme permet de traiter des objets de types différents de manière uniforme, via une interface ou une classe de base.">Qu'est-ce que le polymorphisme ?</span>
 
 Survolez le texte pour voir la réponse. (Ne fonctionne pas sur mobile)
 
