@@ -44,10 +44,59 @@ const { title, description, publishingDate, lastUpdated, heroImage } = Astro.pro
 
 			.date {
 				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
+				display: grid;
+				gap: 1rem;
+				grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 			}
-			.last-updated-on {
-				font-style: italic;
+			
+			.date-card {
+				background: white;
+				border-radius: 12px;
+				padding: 1.5rem;
+				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+				border: 1px solid rgba(var(--gray-light), 0.2);
+				transition: all 0.3s ease;
+				text-align: center;
+			}
+
+
+			
+			.date-card:hover {
+				transform: translateY(-4px);
+				box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.05);
+			}
+			
+			.date-card.update {
+				border-top: 4px solid #10b981;
+			}
+			
+			.date-card:not(.update) {
+				border-top: 4px solid var(--accent);
+			}
+			
+			.date-card-icon {
+				font-size: 2rem;
+				margin-bottom: 0.5rem;
+				display: block;
+			}
+			
+			.date-card-title {
+				font-weight: 600;
+				color: black;
+				margin-bottom: 0.5rem;
+				font-size: 0.9rem;
+				text-transform: uppercase;
+				letter-spacing: 0.5px;
+			}
+			
+			.date-card-value {
+				font-size: 1.1rem;
+				font-weight: 500;
+				color: var(--accent);
+			}
+			
+			.date-card.update .date-card-value {
+				color: #10b981;
 			}
 			
 			.prose pre {
@@ -91,15 +140,24 @@ const { title, description, publishingDate, lastUpdated, heroImage } = Astro.pro
 						<h1>{title}</h1>
 						<hr />
 						<div class="date">
-							Date de publication: <FormattedDate date={publishingDate} />
+							<div class="date-card">
+								<span class="date-card-icon">📅</span>
+								<div class="date-card-title">Publié le</div>
+								<div class="date-card-value">
+									<FormattedDate date={publishingDate} />
+								</div>
+							</div>
 							{lastUpdated && (
-								<>
-									<br /><br/>
-									Date de mise à jour: <FormattedDate date={lastUpdated} />
-								</>
+								<div class="date-card update">
+									<span class="date-card-icon">🔄</span>
+									<div class="date-card-title">Mis à jour le</div>
+									<div class="date-card-value">
+										<FormattedDate date={lastUpdated} />
+									</div>
+								</div>
 							)}
-							<hr />
 						</div>
+						<hr />
 					</div>
 					<slot />
 				</div>
