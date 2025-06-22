@@ -5,7 +5,7 @@ writingStartDate: '2025-06-20'
 publishingDate: '2025-06-20'
 lastUpdated: '2025-06-21'
 heroImage: '/joseph-blog/articles/solid-principles/solid-principles-title.webp'
-IsPublished: false
+IsPublished: true
 ---
 
 ## Quels sont les principes SOLID ?
@@ -32,9 +32,10 @@ Ils ont été introduits par Robert C. Martin et sont largement utilisés en pro
 
 ### S - Principe de Responsabilité Unique
 
-Une classe ne devrait avoir qu'une seule responsabilité.
+Une classe doit avoir une seule raison de changer, c’est-à-dire être responsable d’un seul acteur métier.
 
-Par exemple, une classe `Animal` ne devrait avoir qu'une seule responsabilité : représenter un animal.
+Par exemple, la classe Animal devrait uniquement gérer l’état et le comportement d’un animal. 
+Les opérations liées à la tonte (UseClippers) doivent être gérées ailleurs (ex. AnimalCareService).
 
 ❌**Mauvais exemple :**
 ```csharp
@@ -71,8 +72,8 @@ public class Animal {
     }
 }
 
-public class Human : Animal {
-    public void UseClippers() {
+public class AnimalCareService {
+    public void UseClippers(Animal animal) {
         // ...
     }
 }
@@ -134,29 +135,48 @@ Les objets d'une superclasse devraient être remplaçables par des objets d'une 
 Si nous prenons l'exemple de la classe `Animal`, nous pouvons voir que les classes `Dog` et `Cat` sont substituables par la classe `Animal`.
 
 ```csharp
-public class Animal {
+public abstract class Animal {
     public string Name { get; set; }
     public int Age { get; set; }
 
-    public void Eat() {
-        Console.WriteLine($"{Name} mange");
+    public abstract void Eat();
+}
+
+public class Dog : Animal {
+    public override void Eat() {
+        Console.WriteLine("Le chien mange");
     }
 }
 
-public class Dog : Animal {}
+public class Cat : Animal {
+    public override void Eat() {
+        Console.WriteLine("Le chat mange");
+    }
+}
 
-public class Cat : Animal {}
+public class AnimalFeeder {
+    public void Feed(Animal animal) {
+        animal.Eat();
+    }
+}
+
+var dog = new Dog { Name = "Rex" };
+var cat = new Cat { Name = "Mimi" };
+var feeder = new AnimalFeeder();
+
+feeder.Feed(dog); // Le chien mange
+feeder.Feed(cat); // Le chat mange
 ```
 
-Comme cela, nous pouvons remplacer les classes `Dog` et `Cat` par la classe `Animal` sans affecter la justesse du programme.
+Les objets des sous-classes (Dog, Cat) doivent pouvoir remplacer ceux de la classe de base (Animal) sans modifier le comportement attendu du programme.
 
 ### I - Principe de Ségrégation des Interfaces
 
 Les clients ne devraient pas être forcés de dépendre d'interfaces qu'ils n'utilisent pas.
 
-La mauvaise idée est d'avoir une classe `Animal` avec une méthode `Eat` et une classe `Dog` qui hérite de la classe `Animal` et surcharge la méthode `Eat`.
-
 ❌**Mauvais exemple :**
+Une interface IAction trop large oblige les classes à implémenter des méthodes non pertinentes, comme Fly pour un chien.
+
 ```csharp
 public interface IAction{
     void Eat();
@@ -224,61 +244,6 @@ public class Bird : IFly, IMakeSound, IEat {
 
 Les modules de haut niveau ne devraient pas dépendre des modules de bas niveau. Les deux devraient dépendre d'abstractions.
 
-Si nous prenons l'exemple avec la classe `Animal`, nous pouvons voir que la classe `Dog` dépend de l'interface `IEat`.
-
-❌**Mauvais exemple :**
-
-```csharp
-public class Animal {
-    public string Name { get; set; }
-    public int Age { get; set; }
-}
-
-public class IEat{
-    void Eat(){
-        Console.WriteLine("L'animal mange");
-    }
-}
-
-public class Dog : Animal, IEat {
-    public void Eat() {
-        Console.WriteLine("Le chien mange");
-    }
-}
-```
-
-La classe `Dog` dépend de l'interface `IEat`, mais la classe `Animal` ne dépend pas de l'interface `IEat`.
-
-✅**Bon exemple :**
-```csharp
-public class Animal {
-    public string Name { get; set; }
-    public int Age { get; set; }
-}
-
-public interface IEat {
-    void Eat();
-}
-
-public class Mouth : IEat {
-    public void Eat() {
-        Console.WriteLine("L'animal utilise sa bouche pour manger");
-    }
-}
-
-public class Dog : Animal, IEat {
-    private readonly IEat _eat;
-
-    public Dog(IEat eat) {
-        _eat = eat;
-    }
-
-    public void Eat() {
-        _eat.Eat();
-    }
-}
-```
-
 Si nous prenons un exemple plus réaliste ; avec la classe `OrderProcessor`, nous pouvons voir que la classe `OrderProcessor` dépend de la classe `EmailService`.
 
 ```csharp
@@ -312,7 +277,7 @@ Keep It Simple, Stupid (Garde ça Simple, Stupide).
 
 Le principe KISS énonce que les solutions simples sont souvent meilleures que les solutions complexes.
 
-Si nous prenons un exemple réaliste ; avec le filtre des utilisateurs actifs, nous pouvons voir que le filtre dépend de la classe `User`.
+Prenons un exemple simple : filtrer les utilisateurs actifs dans une liste d’objets `User`.
 
 ```csharp
 var activeUsers = new List<User>();
@@ -323,7 +288,7 @@ foreach (var user in users) {
 }
 ```
 
-La meilleure façon de le faire est d'utiliser Linq :
+Une alternative plus concise, lisible et expressive dans ce cas est d’utiliser LINQ :
 
 ```csharp
 var activeUsers = users.Where(user => user.IsActive == true).ToList();
@@ -331,7 +296,7 @@ var activeUsers = users.Where(user => user.IsActive == true).ToList();
 
 ## Conclusion
 
-Les principes SOLID aident à créer un logiciel plus maintenable, évolutif et robuste, mais il peut être difficile de les respecter tous en même temps.
+Il n’est pas toujours simple d’appliquer tous ces principes en même temps, mais ils offrent une base solide pour écrire du code durable et compréhensible.
 Le principe KISS est un bon moyen de garder le code simple et lisible.
 
 ## Quiz
