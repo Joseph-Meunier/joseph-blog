@@ -7,7 +7,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://Joseph-Meunier.github.io',
-	base: '/joseph-blog',
+	base: '/',
 	integrations: [mdx(), sitemap()],
 	markdown: {
 		shikiConfig: {
